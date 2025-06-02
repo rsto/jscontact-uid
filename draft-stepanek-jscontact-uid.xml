@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rfc [
+<!ENTITY nbsp "&#160;">
+<!ENTITY zwsp "&#8203;">
+<!ENTITY nbhy "&#8209;">
+<!ENTITY wj "&#8288;">
+]>
+<rfc xmlns:xi="http://www.w3.org/2001/XInclude" ipr="trust200902" docName="draft-stepanek-jscontact-uid-00" submissionType="IETF" consensus="true" category="std" xml:lang="en" obsoletes="" updates="" tocInclude="true" symRefs="true" sortRefs="true" version="3">
+  <front>
+    <title abbrev="JSContact: Optional UIDs">JSContact: Optional Unique Identifiers</title>
+    <seriesInfo name="RFC" value="draft-stepanek-jscontact-uid-00"/>
+    <author initials="R." surname="Stepanek" fullname="Robert Stepanek">
+      <organization>Fastmail</organization>
+      <address>
+        <postal>
+          <extaddr>PO Box 234</extaddr>
+          <street>Collins St. West</street>
+          <city>Melbourne</city>
+          <region>VIC</region>
+          <code>8007</code>
+          <country>Australia</country>
+          <region/>
+        </postal>
+        <email>rsto@fastmailteam.com</email>
+      </address>
+    </author>
+    <date year="2025" month="June" day="2"/>
+    <area>art</area>
+    <workgroup>calext</workgroup>
+    <keyword>JSContact</keyword>
+    <abstract>
+      <t>This document redefines the mandatory "uid" property of a Card object to become optional. This is both for using JSContact in other protocols than CardDAV and JMAP for Contacts, as well as to align the semantics of the vCard UID property with JSContact. This is a breaking change, this document introduces version "2.0" to replace the current JSContact version "1.0".</t>
+    </abstract>
+  </front>
+  <middle>
+    <section anchor="notational-conventions" numbered="true" toc="default">
+      <name>Notational Conventions</name>
+      <t>The key words "<bcp14>MUST</bcp14>", "<bcp14>MUST NOT</bcp14>", "<bcp14>REQUIRED</bcp14>", "<bcp14> SHALL</bcp14>", "<bcp14>SHALL NOT</bcp14>", "<bcp14>SHOULD</bcp14>", "<bcp14>SHOULD NOT</bcp14>", "<bcp14> RECOMMENDED</bcp14>", "<bcp14>NOT RECOMMENDED</bcp14>", "<bcp14>MAY</bcp14>", and "<bcp14>OPTIONAL</bcp14>" in this document are to be interpreted as described in BCP 14 <xref target="RFC2119" format="default" sectionFormat="of" derivedContent="RFC2119"/> <xref target="RFC8174" format="default" sectionFormat="of" derivedContent="RFC8174"/> when, and only when, they appear in all capitals, as shown here.</t>
+      <t>The ABNF definitions in this document use the notations of <xref target="RFC5234"/>. ABNF rules not defined in this document are defined in either <xref target="RFC5234"/> (such as the ABNF for CRLF, WSP, DQUOTE, VCHAR, ALPHA, and DIGIT) or <xref target="RFC6350"/>.</t>
+    </section>
+    <section anchor="introduction" numbered="true" toc="default">
+      <name>Introduction</name>
+      <t><xref target="RFC9553"/> defines the "uid" property of a Card object, a mandatory property which contains an unique identifier for the entity represented by that contact card. This property being mandatory has shown to be applicable for some use cases, but has turned out to be an issue in other contexts.</t>
+      <t>For example, the <xref target="RFC6352">CardDAV protocol</xref> requires the UID property of a <xref target="RFC6350">vCard object</xref> to be set. Accordingly, an internet server that implements both CardDAV and <xref target="RFC9610">JMAP for Contacts</xref> requires the "uid" property of a JSContact Card to be set. In contrast, protocols such as <xref target="RFC9083">RDAP</xref> have no use for the "uid" property, either because they use different identifiers, or prefer to not include any unique identifier in the contact data at all. As another example, one of the stated goals of JSContact is to be compatible with the semantics of the vCard data format (<xref target="RFC9553" section="1"/>). But <xref target="RFC6350"/> defines the UID property of a vCard to be optional, and consequently the semantics of JSContact and vCard differ for such a crucial common element.</t>
+      <t>This document redefines the "uid" property of a Card object to become optional. Other than that, the property definition is left unchanged. This is a breaking change: all current version "1.0" Cards are still valid according to the new definition, but new Card objects that omit the "uid" property are invalid according to the definitions of version "1.0". As a consequence, this document updates the current JSContact version to become "2.0".</t>
+    </section>
+    <section anchor="redefined-uid-property" numbered="true" toc="default">
+      <name>Redefined "uid" Property</name>
+      <t>This document redefines the type signature of the "uid" property, originally defined in <xref target="RFC9553" section="2.1.9"/>. The new type signature is:</t>
+          <dl spacing="normal">
+            <dt><strong>uid: String (optional).</strong></dt>
+            <dd/>
+          </dl>
+          <t>The remaining property definition is left unchanged.</t>
+    </section>
+    <section anchor="iana-considerations" numbered="true" toc="default">
+      <name>IANA Considerations</name>
+      <section>
+        <name>Update to the JSContact Version Registry</name>
+        <t>IANA will update the "JSContact Version" registry, originally created in <xref target="RFC9553" section="3.4"/>. It will add the following record:</t>
+        <table anchor="tab-iana-version-registry" align="center">
+          <name>JSContact Version Registry</name>
+          <thead>
+            <tr>
+              <th align="left">Major Version</th>
+              <th align="left">Highest Minor Version</th>
+              <th align="left">Reference</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td align="left">2</td>
+              <td align="left">0</td>
+              <td align="left">This document</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section>
+        <name>Update to the JSContact Properties Registry</name>
+        <t>IANA will update the "JSContact Properties" registry, originally created in <xref target="RFC9553" section="3.5"/>. It will add a reference to <xref target="redefined-uid-property"/> of this document to the "Reference/Description" column of the "uid" property.</t>
+      </section>
+    </section>
+    <section anchor="security-considerations" numbered="true" toc="default">
+      <name>Security Considerations</name>
+      <t>This document does not provide new security considerations. The security considerations of <xref target="RFC9553" section="4" sectionFormat="of"/> apply.</t>
+    </section>
+  </middle>
+  <back>
+    <references>
+      <name>References</name>
+      <references>
+        <name>Normative References</name>
+        <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml"/>
+        <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.5234.xml"/>
+        <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.6350.xml"/>
+        <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.6352.xml"/>
+        <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8174.xml"/>
+        <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9083.xml"/>
+        <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9553.xml"/>
+        <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9610.xml"/>
+      </references>
+    </references>
+  </back>
+</rfc>
