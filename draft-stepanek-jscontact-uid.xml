@@ -5,7 +5,7 @@
 <!ENTITY nbhy "&#8209;">
 <!ENTITY wj "&#8288;">
 ]>
-<rfc xmlns:xi="http://www.w3.org/2001/XInclude" ipr="trust200902" docName="draft-stepanek-jscontact-uid-00" submissionType="IETF" consensus="true" category="std" xml:lang="en" obsoletes="" updates="" tocInclude="true" symRefs="true" sortRefs="true" version="3">
+<rfc xmlns:xi="http://www.w3.org/2001/XInclude" ipr="trust200902" docName="draft-stepanek-jscontact-uid-00" submissionType="IETF" consensus="true" category="std" xml:lang="en" obsoletes="" updates="9553,9555" tocInclude="true" symRefs="true" sortRefs="true" version="3">
   <front>
     <title abbrev="JSContact: Optional UIDs">JSContact: Optional Unique Identifiers</title>
     <seriesInfo name="RFC" value="draft-stepanek-jscontact-uid-00"/>
@@ -52,6 +52,11 @@
             <dd/>
           </dl>
           <t>The remaining property definition is left unchanged.</t>
+        </section>
+    <section anchor="redefined-uid-property-conversion" numbered="true" toc="default">
+      <name>Redefined Conversion Rule for the "uid" Property</name>
+      <t>This document redefines how to convert the Card "uid" property from vCard, originally defined in <xref target="RFC9555" section="2.1.1"/>. The new conversion rule is:</t>
+      <t>Implementations that convert a vCard without a <xref target="RFC6350" section="6.7.6" sectionFormat="parens">UID property</xref> to a Card of version "2.0" or higher <bcp14>MAY</bcp14> generate a unique identifier as value for the <xref target="RFC9553" section="2.1.9" sectionFormat="parens">"uid" property</xref>, they <bcp14>MUST</bcp14> do so for a Card of version "1.0". This value <bcp14>SHOULD</bcp14> be the same when converting the same vCard multiple times, but how to achieve this is implementation-specific.</t>
     </section>
     <section anchor="iana-considerations" numbered="true" toc="default">
       <name>IANA Considerations</name>
@@ -98,6 +103,7 @@
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8174.xml"/>
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9083.xml"/>
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9553.xml"/>
+        <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9555.xml"/>
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9610.xml"/>
       </references>
     </references>
