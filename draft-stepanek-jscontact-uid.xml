@@ -47,12 +47,14 @@
     <section anchor="redefined-uid-property" numbered="true" toc="default">
       <name>Redefined "uid" Property</name>
       <t>This document redefines the type signature of the "uid" property, originally defined in <xref target="RFC9553" section="2.1.9"/>. The new type signature is:</t>
-          <dl spacing="normal">
-            <dt><strong>uid: String (optional).</strong></dt>
-            <dd/>
-          </dl>
-          <t>The remaining property definition is left unchanged.</t>
-        </section>
+      <dl spacing="normal">
+        <dt>
+          <strong>uid: String (optional).</strong>
+        </dt>
+        <dd/>
+      </dl>
+      <t>The remaining property definition is left unchanged.</t>
+    </section>
     <section anchor="redefined-uid-property-conversion" numbered="true" toc="default">
       <name>Redefined Conversion Rule for the "uid" Property</name>
       <t>This document redefines how to convert the Card "uid" property from vCard, originally defined in <xref target="RFC9555" section="2.1.1"/>. The new conversion rule is:</t>
