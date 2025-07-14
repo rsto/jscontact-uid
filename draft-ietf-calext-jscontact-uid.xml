@@ -54,7 +54,8 @@
         </dt>
         <dd/>
       </dl>
-      <t>The remaining property definition is left unchanged.</t>
+      <t>The remaining property definition is left unchanged, with the following additional paragraph:</t>
+      <t>A Card without a uid property can not be referred to as group member in the <xref target="RFC9553" section="2.1.6" sectionFormat="parens">"members" property</xref>, or put in relation to another Card object in the <xref target="RFC9553" section="2.1.8" sectionFormat="parens">"relatedTo" property</xref>.</t>
     </section>
     <section anchor="redefined-uid-property-conversion" numbered="true" toc="default">
       <name>Redefined Conversion Rule for the "uid" Property</name>
