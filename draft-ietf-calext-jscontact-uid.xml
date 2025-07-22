@@ -5,10 +5,10 @@
 <!ENTITY nbhy "&#8209;">
 <!ENTITY wj "&#8288;">
 ]>
-<rfc xmlns:xi="http://www.w3.org/2001/XInclude" ipr="trust200902" docName="draft-ietf-calext-jscontact-uid-00" submissionType="IETF" consensus="true" category="std" xml:lang="en" obsoletes="" updates="9553,9555" tocInclude="true" symRefs="true" sortRefs="true" version="3">
+<rfc xmlns:xi="http://www.w3.org/2001/XInclude" ipr="trust200902" docName="draft-ietf-calext-jscontact-uid-01" submissionType="IETF" consensus="true" category="std" xml:lang="en" obsoletes="" updates="9553,9555" tocInclude="true" symRefs="true" sortRefs="true" version="3">
   <front>
     <title abbrev="JSContact: Optional UIDs">JSContact: Optional Unique Identifiers</title>
-    <seriesInfo name="RFC" value="draft-ietf-calext-jscontact-uid-00"/>
+    <seriesInfo name="RFC" value="draft-ietf-calext-jscontact-uid-01"/>
     <author initials="R." surname="Stepanek" fullname="Robert Stepanek">
       <organization>Fastmail</organization>
       <address>
@@ -24,7 +24,7 @@
         <email>rsto@fastmailteam.com</email>
       </address>
     </author>
-    <date year="2025" month="June" day="23"/>
+    <date year="2025" month="July" day="22"/>
     <area>art</area>
     <workgroup>calext</workgroup>
     <keyword>JSContact</keyword>
