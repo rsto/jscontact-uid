@@ -5,7 +5,7 @@
 <!ENTITY nbhy "&#8209;">
 <!ENTITY wj "&#8288;">
 ]>
-<rfc xmlns:xi="http://www.w3.org/2001/XInclude" ipr="trust200902" docName="draft-ietf-calext-jscontact-uid-06" submissionType="IETF" consensus="true" category="std" xml:lang="en" obsoletes="" updates="9553,9555" tocInclude="true" symRefs="true" sortRefs="true" version="3">
+<rfc xmlns:xi="http://www.w3.org/2001/XInclude" ipr="trust200902" docName="draft-ietf-calext-jscontact-uid-06" submissionType="IETF" consensus="true" category="std" xml:lang="en" obsoletes="" updates="9555" tocInclude="true" symRefs="true" sortRefs="true" version="3">
   <front>
     <title abbrev="JSContact Version 2.0">JSContact Version 2.0: A JSON Representation of Contact Data</title>
     <seriesInfo name="RFC" value="draft-ietf-calext-jscontact-uid-06"/>
@@ -68,7 +68,7 @@
       <name>Redefined Conversion Rule for the uid Property</name>
       <t>This document redefines how to convert the Card uid property from vCard, originally defined in <xref target="RFC9555" section="2.1.1"/>. The new conversion rule is:</t>
       <t>Implementations that convert a vCard without a <xref target="RFC6350" section="6.7.6" sectionFormat="parens">UID property</xref> to a Card of version "2.0" or higher <bcp14>MUST NOT</bcp14> generate a unique identifier as value for the <xref target="RFC9553" section="2.1.9" sectionFormat="parens">uid property</xref>.</t>
-      <t>When converting a vCard without UID property to obsoleted JSContact version "1.0", implementations <bcp14>MUST</bcp14> generate a value for the uid property. Generating unique identifiers is implementation-specific. An implementation <bcp14>SHOULD</bcp14> generate the same value when generating the same Card multiple times, but <bcp14>MAY</bcp14> generate different values for each conversion. <xref target="introduction"/> describes why this is problematic. Consequently, implementations <bcp14>SHOULD NOT</bcp14> convert to version "1.0" Card objects.</t>
+      <t>When converting a vCard without UID property to JSContact version "1.0", implementations <bcp14>MUST</bcp14> generate a value for the uid property. Generating unique identifiers is implementation-specific. An implementation <bcp14>SHOULD</bcp14> generate the same value when generating the same Card multiple times, but <bcp14>MAY</bcp14> generate different values for each conversion. <xref target="introduction"/> describes why this is problematic. Consequently, implementations <bcp14>SHOULD NOT</bcp14> convert to version "1.0" Card objects.</t>
     </section>
     <section>
         <name>Other Changes</name>
@@ -99,7 +99,7 @@
       </section>
       <section>
         <name>Update to the JSContact Properties Registry</name>
-        <t>IANA will update the "JSContact Properties" registry, originally created in <xref target="RFC9553" section="3.5"/>: For the "Reference/Description" column of the uid property, it will replace the reference to <xref target="RFC9553"/> with a reference to <xref target="redefined-uid-property"/> of this document.</t>
+        <t>IANA will update the "JSContact Properties" registry, originally created in <xref target="RFC9553" section="3.5"/>: In the "Reference/Description" column of the uid property, it will add a reference to <xref target="redefined-uid-property"/> of this document.</t>
       </section>
       <section>
         <name>Update to the vCard Parameters Registry</name>
