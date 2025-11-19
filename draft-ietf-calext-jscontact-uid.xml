@@ -40,7 +40,7 @@
     </section>
     <section anchor="introduction" numbered="true" toc="default">
       <name>Introduction</name>
-      <t><xref target="RFC9553">JSContact</xref> defines the Card object uid property, a mandatory property which contains an unique identifier for the entity represented by that contact card. For the same purpose, the <xref target="RFC6350">vCard</xref> contact format defines the UID property, an optional property of a vCard instance. Throughout the rest of this document, the term uid (all lowercase) denotes the JSContact uid property, the term UID (all uppercase) denotes the vCard UID property.</t>
+      <t><xref target="RFC9553">JSContact</xref> defines the Card object uid property, a mandatory property which contains a unique identifier for the entity represented by that contact card. For the same purpose, the <xref target="RFC6350">vCard</xref> contact format defines the UID property, an optional property of a vCard instance. Throughout the rest of this document, the term uid (all lowercase) denotes the JSContact uid property, the term UID (all uppercase) denotes the vCard UID property.</t>
       <t>That the uid property was defined to be mandatory in JSContact has shown to be applicable for some use cases, but turned out to be an issue in other contexts:</t>
           <t>For example, the <xref target="RFC6352">CardDAV protocol</xref> requires the UID property of a <xref target="RFC6350">vCard object</xref> to be set. Accordingly, an internet server that implements both CardDAV and <xref target="RFC9610">JMAP for Contacts</xref> requires the uid property of a JSContact Card to be set. In contrast, protocols such as <xref target="RFC9083">RDAP</xref> have no use for the uid property, either because they use different identifiers, or they prefer to not include any unique identifier in the contact data at all. JSContact should not require them to generate unique identifiers that are irrelevant to their use case.</t>
           <t>Also, one of the stated goals of JSContact is to be compatible with the semantics of the vCard data format (<xref target="RFC9553" section="1"/>). But <xref target="RFC6350"/> defines the UID property of a vCard to be optional, and consequently the semantics of JSContact and vCard differ for such a crucial common element.</t>
@@ -51,6 +51,7 @@
       <t>This document redefines the uid property of a Card object to become optional. Other than that, the property definition is left unchanged. This change requires the major version of JSContact to change, so this document defines the JSContact version to become "2.0". For further information about versioning JSContact data, see <xref target="RFC9553" section="1.9"/>.</t>
       <t>Implementations <bcp14>MUST</bcp14> create JSContact data that complies with the definitions of version "2.0" (or some later registered version) and <bcp14>MUST</bcp14> set the version property of the JSContact Card object to that version. They <bcp14>MUST NOT</bcp14> reject a Card object without the uid property as invalid unless specified differently in another document, or unless the Card version property has value "1.0". As any valid version "1.0" JSContact Card also is valid according to version "2.0", there is no need to migrate existing JSContact data.</t>
       <t>Setting the uid property is use-case specific. If an implementation is able to consistently generate the exact same unique identifier for a JSContact Card representing the same entity and no protocol-specific concerns prevail, it is recommended to set the uid property.</t>
+      <t>This document does not redefine the vCard UID property.</t>
     </section>
     <section anchor="redefined-uid-property" numbered="true" toc="default">
       <name>Redefined uid Property</name>
@@ -62,13 +63,15 @@
         <dd/>
       </dl>
       <t>The remaining property definition is left unchanged, with the following additional paragraph:</t>
-      <t>A Card without a uid property can not be referred to as group member in the <xref target="RFC9553" section="2.1.6" sectionFormat="parens">members property</xref>, or put in relation to another Card object in the <xref target="RFC9553" section="2.1.8" sectionFormat="parens">relatedTo property</xref>.</t>
+      <blockquote>
+        <t>A Card without an uid property can not be referred to as group member in the <xref target="RFC9553" section="2.1.6" sectionFormat="parens">members property</xref>, or put in relation to another Card object in the <xref target="RFC9553" section="2.1.8" sectionFormat="parens">relatedTo property</xref>.</t>
+      </blockquote>
     </section>
     <section anchor="redefined-uid-property-conversion" numbered="true" toc="default">
       <name>Redefined Conversion Rule for the uid Property</name>
       <t>This document redefines how to convert the Card uid property from vCard, originally defined in <xref target="RFC9555" section="2.1.1"/>. The new conversion rule is:</t>
       <t>Implementations that convert a vCard without a <xref target="RFC6350" section="6.7.6" sectionFormat="parens">UID property</xref> to a Card of version "2.0" or higher <bcp14>MUST NOT</bcp14> generate a unique identifier as value for the <xref target="RFC9553" section="2.1.9" sectionFormat="parens">uid property</xref>.</t>
-      <t>When converting a vCard without UID property to JSContact version "1.0", implementations <bcp14>MUST</bcp14> generate a value for the uid property. Generating unique identifiers is implementation-specific. An implementation <bcp14>SHOULD</bcp14> generate the same value when generating the same Card multiple times, but <bcp14>MAY</bcp14> generate different values for each conversion. <xref target="introduction"/> describes why this is problematic. Consequently, implementations <bcp14>SHOULD NOT</bcp14> convert to version "1.0" Card objects.</t>
+      <t>When converting a vCard without UID property to JSContact version "1.0", implementations <bcp14>MUST</bcp14> generate a value for the uid property. Generating unique identifiers is implementation-specific. An implementation <bcp14>SHOULD</bcp14> generate the same value when generating the same Card multiple times. <xref target="introduction"/> describes why this is problematic. Consequently, implementations <bcp14>SHOULD NOT</bcp14> convert to version "1.0" Card objects.</t>
     </section>
     <section>
         <name>Other Changes</name>
