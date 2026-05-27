@@ -42,11 +42,7 @@
 defines the UID property of a vCard to be optional, and consequently, the semantics of JSContact and vCard differ for such a crucial common element.
   </li>
   <li>
-    The <xref target="RFC6352">CardDAV protocol</xref> requires the UID property of a
-<xref target="RFC6350">vCard object</xref>
-to be set. Accordingly, an internet server that in addition to CardDAV also implements <xref target="RFC9610">JSON Meta Application Protocol (JMAP) for Contacts</xref>
-also expects the uid property of a JSContact Card to be set. In contrast, protocols such as <xref target="RFC9083">RDAP</xref>
-have no use for the uid property, either because they use different identifiers or they prefer to not include any unique identifier in the contact data at all. JSContact should not require them to generate unique identifiers that are irrelevant to their use case.
+    Address book synchronization protocols, such as <xref target="RFC6352">CardDAV</xref> and <xref target="RFC9610">JMAP for Contacts</xref>, require the uid property. But other protocols, such as <xref target="RFC9083">RDAP</xref>, have no use for it. JSContact should not require protocols to generate unique identifiers when they are irrelevant or even detrimental to the use case.
   </li>
   <li>
     Converting vCards having no UID property to JSContact is especially problematic:
